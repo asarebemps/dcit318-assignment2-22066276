@@ -1,28 +1,25 @@
 using System;
 
-namespace InheritanceOverridingApp
+namespace InterfacesApp
 {
-    class Animal
+    interface IMovable
     {
-        public virtual void MakeSound()
+        void Move();
+    }
+
+    class Car : IMovable
+    {
+        public void Move()
         {
-            Console.WriteLine("Some generic sound");
+            Console.WriteLine("Car is moving");
         }
     }
 
-    class Dog : Animal
+    class Bicycle : IMovable
     {
-        public override void MakeSound()
+        public void Move()
         {
-            Console.WriteLine("Bark");
-        }
-    }
-
-    class Cat : Animal
-    {
-        public override void MakeSound()
-        {
-            Console.WriteLine("Meow");
+            Console.WriteLine("Bicycle is moving");
         }
     }
 
@@ -30,13 +27,11 @@ namespace InheritanceOverridingApp
     {
         static void Main(string[] args)
         {
-            Animal genericAnimal = new Animal();
-            Animal dog = new Dog();
-            Animal cat = new Cat();
+            IMovable car = new Car();
+            IMovable bicycle = new Bicycle();
 
-            genericAnimal.MakeSound(); // Some generic sound
-            dog.MakeSound();           // Bark
-            cat.MakeSound();           // Meow
+            car.Move();      // Car is moving
+            bicycle.Move();  // Bicycle is moving
         }
     }
 }
