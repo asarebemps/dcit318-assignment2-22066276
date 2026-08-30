@@ -1,41 +1,28 @@
 using System;
 
-namespace AbstractClassesApp
+namespace InheritanceOverridingApp
 {
-    abstract class Shape
+    class Animal
     {
-        public abstract double GetArea();
-    }
-
-    class Circle : Shape
-    {
-        private double radius;
-
-        public Circle(double radius)
+        public virtual void MakeSound()
         {
-            this.radius = radius;
-        }
-
-        public override double GetArea()
-        {
-            return Math.PI * radius * radius;
+            Console.WriteLine("Some generic sound");
         }
     }
 
-    class Rectangle : Shape
+    class Dog : Animal
     {
-        private double width;
-        private double height;
-
-        public Rectangle(double width, double height)
+        public override void MakeSound()
         {
-            this.width = width;
-            this.height = height;
+            Console.WriteLine("Bark");
         }
+    }
 
-        public override double GetArea()
+    class Cat : Animal
+    {
+        public override void MakeSound()
         {
-            return width * height;
+            Console.WriteLine("Meow");
         }
     }
 
@@ -43,11 +30,13 @@ namespace AbstractClassesApp
     {
         static void Main(string[] args)
         {
-            Shape circle = new Circle(5);
-            Shape rectangle = new Rectangle(4, 6);
+            Animal genericAnimal = new Animal();
+            Animal dog = new Dog();
+            Animal cat = new Cat();
 
-            Console.WriteLine($"Circle Area: {circle.GetArea():F2}");
-            Console.WriteLine($"Rectangle Area: {rectangle.GetArea():F2}");
+            genericAnimal.MakeSound(); // Some generic sound
+            dog.MakeSound();           // Bark
+            cat.MakeSound();           // Meow
         }
     }
 }
